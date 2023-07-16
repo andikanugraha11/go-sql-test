@@ -9,18 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-#    services:
-#      dind:
-#        image: docker:23.0-rc-dind-rootless
-#        ports:
-#          - 2375:2375
-
-      - name: Checkout Main
         uses: actions/checkout@v3
-        with:
-          path: ${{ env.MAINBRANCH }}
-          ref: ${{ env.MAINBRANCH }}
 
       - name: Install Go
         uses: actions/setup-go@v2
@@ -29,9 +18,6 @@ jobs:
 
       - name: Change to code directory
         run: cd ${{ github.workspace }}
-
-      - name: Install Dockertest
-        run: go get github.com/ory/dockertest/v3
 
       - name: Run tests
         run: |
